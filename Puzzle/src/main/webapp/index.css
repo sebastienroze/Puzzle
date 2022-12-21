@@ -1,0 +1,95 @@
+body {
+	touch-action: none;
+	background-color: burlywood;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.hidden {
+	display: none;
+}
+
+.choixImage {
+	border: 5px solid black;
+	border-radius: 10px;
+	margin: 5px;
+}
+
+.choixImage:hover {
+	border: 5px solid red;
+}
+
+.img-with-text {
+	display: inline-block;
+	flex-wrap: wrap;
+	margin: auto;
+	text-align: center;
+}
+
+#idDivLogin {
+	background-color: white;
+	width: 50%;
+	margin: 0 auto;
+	font-size: large;
+	padding: 10px;
+	border: 5px solid black;
+	border-radius: 10px;
+	text-align: center;
+}
+
+#idDivLogin label {
+	display: block;
+}
+
+input[type=button] {
+	background-color: #1e2fc9;
+	color: white;
+	padding: 16px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+input[type=button]:hover {
+	background-color: #4355ff;
+}
+
+h1 {
+	text-align: center;
+}
+
+.btRetour {
+	top:0px;
+	right: 0px;	
+	position: absolute;
+}
+
+#idDivMenu {
+	margin-top: 100px;
+	width:100%;
+	text-align: center;
+	display: block;
+}
+#idDivMenu input{
+	display: block;
+	text-align: center;
+	margin : 0 auto;
+	margin-top: 10px;
+	width: 50%;
+}
+
+span {
+	display: block;
+	font-size: x-large;
+	text-align: center;
+	margin : 0 auto;
+}
+
+#iddisplay {
+	background-color: burlywood;
+	border-radius: 10px;
+	width:300px;
+}
