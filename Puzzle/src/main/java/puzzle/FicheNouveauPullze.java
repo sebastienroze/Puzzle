@@ -26,9 +26,10 @@ public class FicheNouveauPullze {
 	public FicheNouveauPullze(FicheHtml fiche, String saveFilename,String prefFilename) {
 		this.fiche = fiche;
 		this.saveFilename = saveFilename;
+		this.prefFilename = prefFilename;
 		images = new ArrayList<ImageInfo>();
 		masks = new ArrayList<ImageInfo>();
-		containers = new ArrayList<HtmlContainer>(); 
+		containers = new ArrayList<HtmlContainer>();		
 		createContent();
 	}
 
@@ -126,6 +127,7 @@ public class FicheNouveauPullze {
 		fichePuzzle.webService.puzzleInfo.imageHeight = height;		
 		fichePuzzle.webService.puzzleInfo.antiCache = ApplicationParams.antiCachePiece(selectedImage.numero, selectedMask.numero);		
 		fichePuzzle.setPieces(puzzleCutter.getPieces());
+		fichePuzzle.alerte(puzzleCutter.getWarning());
 		fichePuzzle.setFichePrecedente(fiche.getFichePrecedente());
 	}
 

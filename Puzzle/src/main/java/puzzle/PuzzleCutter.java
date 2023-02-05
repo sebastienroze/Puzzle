@@ -20,18 +20,18 @@ public class PuzzleCutter {
 	private String destinationPath;
 	private Graphics2D workGraphics;
 	private ArrayList<BufferedImage> pieces;
+	private String warning;
 
 	public PuzzleCutter(String puzzleFile, String maskFile, String destinationPath) {
-		
 		this.destinationPath = destinationPath;
 		pieces = new ArrayList<BufferedImage>();
 		try {
-			image = ImageIO.read(new File(ApplicationParams.getImagesPath()+puzzleFile));
-			mask = ImageIO.read(new File(ApplicationParams.getMasksPath()+maskFile));
+			image = ImageIO.read(new File(ApplicationParams.getImagesPath() + puzzleFile));
+			mask = ImageIO.read(new File(ApplicationParams.getMasksPath() + maskFile));
 		} catch (IOException e) {
 			System.out.println("Image ou masque non trouvé");
-			System.out.println(ApplicationParams.getImagesPath()+puzzleFile);
-			System.out.println(ApplicationParams.getMasksPath()+maskFile);
+			System.out.println(ApplicationParams.getImagesPath() + puzzleFile);
+			System.out.println(ApplicationParams.getMasksPath() + maskFile);
 		}
 
 		if ((image != null) && (mask != null)) {
@@ -48,7 +48,7 @@ public class PuzzleCutter {
 				serializePiecesInfo();
 			}
 		}
-		saveMask();		
+		saveMask();
 	}
 
 	private void serializePiecesInfo() {
@@ -128,6 +128,7 @@ public class PuzzleCutter {
 		}
 		BufferedImage piece = workImage.getSubimage(xMin, yMin, xMax - xMin + 1, yMax - yMin + 1);
 		savePiece(piece);
+		if ((piece.getWidth()<=2) && (piece.getHeight()<=2)) addWarning(" Petite piece à "+xMin+","+yMin);		
 		PieceInfo pieceInfo = new PieceInfo(xMin, yMin);
 		for (int neighbor : neighbors) {
 			puzzleInfo.piecesInfo.get(neighbor).getNeighbors().add(puzzleInfo.piecesInfo.size());
@@ -143,7 +144,7 @@ public class PuzzleCutter {
 			pieces.add(image);
 		} else {
 			try {
-								File outputfile = new File(destinationPath + puzzleInfo.piecesInfo.size() + ".png");
+				File outputfile = new File(destinationPath + puzzleInfo.piecesInfo.size() + ".png");
 				ImageIO.write(piece, "png", outputfile);
 			} catch (IOException e) {
 			}
@@ -165,7 +166,8 @@ public class PuzzleCutter {
 	}
 
 	public void saveMask() {
-		if (destinationPath == null) return;		
+		if (destinationPath == null)
+			return;
 		try {
 			File outputfile = new File(destinationPath + "mask.png");
 			ImageIO.write(mask, "png", outputfile);
@@ -187,6 +189,16 @@ public class PuzzleCutter {
 
 	public void setPieces(ArrayList<BufferedImage> pieces) {
 		this.pieces = pieces;
+	}
+
+	public String getWarning() {
+		return warning;
+	}
+
+	public void addWarning(String warning) {
+		if (this.warning == null)
+			this.warning = "";
+		this.warning += warning;
 	}
 
 }
