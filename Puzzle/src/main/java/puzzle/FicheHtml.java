@@ -92,6 +92,7 @@ public class FicheHtml {
 	}
 
 	protected void alerte(String alert) {
+		if (alert==null) return;
 		webService.addAlert(alert);
 	}
 
